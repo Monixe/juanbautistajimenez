@@ -1,0 +1,43 @@
+.page {
+  position: relative;       /* necesario para overlay */
+  width: 100%;
+}
+
+.about-img {
+  width: 100%;              /* ocupa todo el ancho de la pantalla */
+  display: block;
+  max-height: 300px;   /* la altura máxima que quieras */
+  object-fit: cover;
+  object-position: top;
+
+}
+
+.page p {
+  position: absolute;       /* overlay sobre la imagen */
+  top: 0;
+  left: 0;
+  width: 33.33%;            /* un tercio de la pantalla */
+  height: 100%;             /* ocupa toda la altura de la imagen */
+  background: rgb(51 27 4 / 80%);
+  color: #fff;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 44%);
+  overflow-y: auto;         /* para que el texto largo haga scroll interno */
+  margin-top:0;
+}
+
+/* Opcional: hacer responsive */
+@media (max-width: 768px) {
+  .about-img {
+    width: 70%;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-img {
+    width: 90%;
+    max-width: 200px;
+  }
+}

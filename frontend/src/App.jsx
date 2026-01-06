@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import Header from "./components/Header";
+import About from "./components/About";
+import Taller from "./components/Taller";
+import Obra from "./components/Obra";
+import Modeling3D from "./components/Modeling3D";
+import Enlaces from "./components/Enlaces";
+import Contacto from "./components/Contacto";
+import HeroBanner from "./components/HeroBanner";
+import Footer from "./components/Footer";
+import "./index.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [page, setPage] = useState("sobre-mi");
+
+  const renderPage = () => {
+    switch (page) {
+      case "taller":
+        return <Taller />;
+      case "obra":
+        return <Obra />;
+      case "modeling3d":
+        return <Modeling3D />;
+      case "enlaces":
+        return <Enlaces />;
+      case "contacto":
+        return <Contacto />;
+      default:
+        return <About />;
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+  <>
+    {/* Header recibe page y setPage */}
+    <Header current={page} onChange={setPage} />
+    
+    {/* Hero banner justo debajo del header */}
+    <HeroBanner />
 
-export default App
+    {/* Contenido de la sección seleccionada */}
+    <main className="main">
+      {renderPage()}
+    </main>
+
+    {/* Footer al final de la página */}
+    <Footer />
+  </>
+);
+}

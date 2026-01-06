@@ -1,0 +1,111 @@
+.header {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+/* --- NAV SCROLLER --- */
+.nav {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  width: 100%;
+  transition: opacity 0.25s ease;
+}
+
+/* Ocultar scrollbar */
+.nav::-webkit-scrollbar {
+  display: none;
+}
+.nav {
+  scrollbar-width: none; /* Firefox */
+  background-color: #c3ac91d6;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  list-style: none;
+  margin: 0;
+}
+
+/* Botones del menú */
+.nav-btn {
+  background: none;
+  border: none;
+  padding: .5rem 1rem;
+  font-size: 1rem;
+  font-family:"Belanosima";
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.2s ease;
+  color:white;
+}
+
+.nav-btn:hover {
+  color: #8c7c69d6;
+  transform: translateY(-2px);
+}
+
+.nav-btn.active {
+  color: #ffffff;
+  font-weight: bold;
+  border-bottom: 2px solid #ffffff;
+}
+
+/* --- FLECHAS LATERALES ANIMADAS --- */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  padding: .3rem .5rem;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Cuando React las muestra → animación */
+.arrow.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.arrow.left {
+  left: 0;
+}
+
+.arrow.right {
+  right: 0;
+}
+
+/* efecto de pulsación */
+.arrow:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+/* Desktop: esconder flechas (opcional) */
+@media (min-width: 768px) {
+  .nav {
+    overflow-x: visible;
+  }
+  .arrow {
+    display: none;
+  }
+}

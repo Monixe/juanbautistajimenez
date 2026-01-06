@@ -1,0 +1,51 @@
+.contact-page {
+  padding: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-info p {
+  margin: 0 0 .8rem 0;
+  line-height: 1.5;
+}
+
+.contact-info a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.contact-map iframe {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Tablet y escritorio */
+@media (min-width: 768px) {
+  .contact-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+  }
+
+  .contact-info {
+    width: 45%;
+  }
+
+  .contact-map {
+    width: 55%;
+  }
+}
