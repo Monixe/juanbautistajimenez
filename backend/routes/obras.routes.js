@@ -1,4 +1,4 @@
-// src/routes/obras.routes.js
+// ./routes/obras.routes.js
 import { Router } from "express";
 import { 
   getAllObras, 

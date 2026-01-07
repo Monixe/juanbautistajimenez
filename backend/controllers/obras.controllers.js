@@ -1,4 +1,4 @@
-// src/controllers/obra.controller.js
+// ./controllers/obra.controller.js
 import Obra from "../models/Obra.js";
 import EstadoObra from "../models/EstadoObra.js";
 import ImagenEstado from "../models/ImagenEstado.js";
