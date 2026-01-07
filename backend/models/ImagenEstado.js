@@ -1,4 +1,4 @@
-// ./models/EstadoObra.js (sin Sequelize)
+
 import pool from "../config/db.js";
 
 // Obtener todos los estados de una obra

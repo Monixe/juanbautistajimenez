@@ -1,79 +1,42 @@
-html, body, #root {
-  height: 100%;
-  margin: 0;
-}
+/* Reset base */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
 
+/* Fondo */
 body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* toda la ventana */
-  font-family: system-ui, sans-serif;
-  color: #222;
   background-color: #fbeddc;
+  color: #222;
+  font-family: system-ui, sans-serif;
+
+  /* No scrollbar visible en el body */
+  overflow: hidden;
 }
 
-#root {
+/* Layout app */
+.app-shell {
+  height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+/* El contenido puede “scrollear” si hace falta, pero oculto */
+.app-main {
   flex: 1;
+  overflow: auto;
+  padding: 0;
 }
 
-main {
-  flex: 1; /* ocupa todo el espacio restante si hay contenido, puede ser pequeño */
-}
+/* Ocultar scrollbars (pero permite scroll) */
+.app-main::-webkit-scrollbar { width: 0; height: 0; }
+.app-main { scrollbar-width: none; -ms-overflow-style: none; }
 
-.footer {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 20px;
-  border-top: 1px solid #e5e7eb;
-  background-color: #c3ac91d6;
-  font-size: 14px;
-  color: #ffffff;
-  width: 100%;
-}
-
-.page img, .main img, .HeroBanner img {
-  width: 100%;
-  height: 100%; /* ocupa toda la altura disponible */
-  object-fit: cover; /* recorta proporcionalmente */
-}
-
-.gallery {
-  display: grid;
-  gap: 1rem;
-}
-
-.cards {
-  display: grid;
-  gap: 1rem;
-}
-
-.card {
+/* Imágenes */
+img, video {
+  max-width: 100%;
   display: block;
-  text-decoration: none;
-  color: inherit;
 }
-
-.card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-@media (min-width: 768px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.passions-conflict-regular {
-  font-family: "Passions Conflict", cursive;
-  font-weight: 400;
-  font-style: normal;
+.instagram-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }

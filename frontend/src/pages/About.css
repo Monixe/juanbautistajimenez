@@ -1,0 +1,47 @@
+.about-page {
+  width: 100%;
+}
+
+/* Imagen full width */
+.about-img-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-img {
+  width: 100%;
+  height: 360px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Texto debajo */
+.about-text {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.2rem 1rem 2rem;
+  text-align: left;
+}
+
+.about-text h2 {
+  margin: 0 0 0.8rem 0;
+  font-family: "Belanosima", system-ui, sans-serif;
+}
+
+.about-text p {
+  margin: 0 0 0.9rem 0;
+  line-height: 1.55;
+  opacity: 0.95;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .about-img {
+    height: 480px;
+  }
+
+  .about-text {
+    padding-top: 1.6rem;
+  }
+}

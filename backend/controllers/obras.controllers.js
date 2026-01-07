@@ -1,34 +1,33 @@
-// ./controllers/obra.controller.js
-import Obra from "../models/Obra.js";
-import EstadoObra from "../models/EstadoObra.js";
-import ImagenEstado from "../models/ImagenEstado.js";
+import {
+  getObrasConImagenes,
+  getObrasConImagenesByMaterial,
+  getObraConImagenesById,
+  createObra,
+  updateObra,
+  deleteObra,
+} from "../models/Obra.js";
 
-// Obtener todas las obras con sus fases y fotos
-export const getAllObras = async (req, res) => {
+// GET /api/obras  o  /api/obras?material=Digital
+export const getObras = async (req, res) => {
   try {
-    const obras = await Obra.findAll({
-      include: {
-        model: EstadoObra,
-        include: ImagenEstado
-      }
-    });
+    const { material } = req.query;
+
+    const obras = material
+      ? await getObrasConImagenesByMaterial(material)
+      : await getObrasConImagenes();
+
     res.json(obras);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Error obteniendo las obras" });
+    res.status(500).json({ error: "Error obteniendo obras" });
   }
 };
 
-// Obtener una obra por ID con sus fases e imágenes
-export const getObraById = async (req, res) => {
+// GET /api/obras/:id
+export const getObra = async (req, res) => {
   try {
     const { id } = req.params;
-    const obra = await Obra.findByPk(id, {
-      include: {
-        model: EstadoObra,
-        include: ImagenEstado
-      }
-    });
+    const obra = await getObraConImagenesById(id);
     if (!obra) return res.status(404).json({ error: "Obra no encontrada" });
     res.json(obra);
   } catch (error) {
@@ -37,43 +36,38 @@ export const getObraById = async (req, res) => {
   }
 };
 
-// Crear una nueva obra
-export const createObra = async (req, res) => {
+// POST /api/obras
+export const createObraCtrl = async (req, res) => {
   try {
     const { nombre, anio, destino, descripcion } = req.body;
-    const nuevaObra = await Obra.create({ nombre, anio, destino, descripcion });
-    res.status(201).json(nuevaObra);
+    if (!nombre) return res.status(400).json({ error: "Nombre obligatorio" });
+
+    const id = await createObra({ nombre, anio, destino, descripcion });
+    res.status(201).json({ id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error creando la obra" });
   }
 };
 
-// Actualizar una obra existente
-export const updateObra = async (req, res) => {
+// PUT /api/obras/:id
+export const updateObraCtrl = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nombre, anio, destino, descripcion } = req.body;
-    const obra = await Obra.findByPk(id);
-    if (!obra) return res.status(404).json({ error: "Obra no encontrada" });
-
-    await obra.update({ nombre, anio, destino, descripcion });
-    res.json(obra);
+    await updateObra(id, req.body);
+    res.json({ message: "Obra actualizada" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error actualizando la obra" });
   }
 };
 
-// Eliminar una obra
-export const deleteObra = async (req, res) => {
+// DELETE /api/obras/:id
+export const deleteObraCtrl = async (req, res) => {
   try {
     const { id } = req.params;
-    const obra = await Obra.findByPk(id);
-    if (!obra) return res.status(404).json({ error: "Obra no encontrada" });
-
-    await obra.destroy();
-    res.json({ message: "Obra eliminada correctamente" });
+    await deleteObra(id);
+    res.json({ message: "Obra eliminada" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error eliminando la obra" });

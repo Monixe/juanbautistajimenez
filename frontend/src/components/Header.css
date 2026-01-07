@@ -1,29 +1,22 @@
 .header {
   position: relative;
   width: 100%;
-  background: #ffffff;
   border-bottom: 1px solid #ddd;
   display: flex;
   align-items: center;
 }
 
-/* --- NAV SCROLLER --- */
 .nav {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   width: 100%;
-  transition: opacity 0.25s ease;
-}
-
-/* Ocultar scrollbar */
-.nav::-webkit-scrollbar {
-  display: none;
-}
-.nav {
-  scrollbar-width: none; /* Firefox */
   background-color: #c3ac91d6;
+
+  /* Ocultar scrollbar */
+  scrollbar-width: none;
 }
+.nav::-webkit-scrollbar { display: none; }
 
 .nav-list {
   display: flex;
@@ -34,17 +27,16 @@
   margin: 0;
 }
 
-/* Botones del menú */
 .nav-btn {
   background: none;
   border: none;
   padding: .5rem 1rem;
   font-size: 1rem;
-  font-family:"Belanosima";
+  font-family: "Belanosima";
   white-space: nowrap;
   cursor: pointer;
   transition: color 0.3s ease, transform 0.2s ease;
-  color:white;
+  color: white;
 }
 
 .nav-btn:hover {
@@ -58,7 +50,6 @@
   border-bottom: 2px solid #ffffff;
 }
 
-/* --- FLECHAS LATERALES ANIMADAS --- */
 .arrow {
   position: absolute;
   top: 50%;
@@ -75,37 +66,19 @@
 
   opacity: 0;
   pointer-events: none;
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Cuando React las muestra → animación */
 .arrow.show {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(-50%) scale(1);
 }
 
-.arrow.left {
-  left: 0;
-}
+.arrow.left { left: 0; }
+.arrow.right { right: 0; }
 
-.arrow.right {
-  right: 0;
-}
-
-/* efecto de pulsación */
-.arrow:active {
-  transform: translateY(-50%) scale(0.9);
-}
-
-/* Desktop: esconder flechas (opcional) */
 @media (min-width: 768px) {
-  .nav {
-    overflow-x: visible;
-  }
-  .arrow {
-    display: none;
-  }
+  .nav { overflow-x: visible; }
+  .arrow { display: none; }
 }

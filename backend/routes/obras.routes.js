@@ -1,20 +1,18 @@
-// ./routes/obras.routes.js
-import { Router } from "express";
-import { 
-  getAllObras, 
-  getObraById, 
-  createObra, 
-  updateObra, 
-  deleteObra 
-} from "../controllers/obra.controller.js";
+import express from "express";
+import {
+  getObras,
+  getObra,
+  createObraCtrl,
+  updateObraCtrl,
+  deleteObraCtrl,
+} from "../controllers/obras.controllers.js";
 
-const router = Router();
+const router = express.Router();
 
-// Rutas para obras
-router.get("/", getAllObras);          // GET /api/obras -> lista todas las obras
-router.get("/:id", getObraById);      // GET /api/obras/:id -> obtiene obra por id
-router.post("/", createObra);         // POST /api/obras -> crea nueva obra
-router.put("/:id", updateObra);       // PUT /api/obras/:id -> actualiza obra
-router.delete("/:id", deleteObra);    // DELETE /api/obras/:id -> elimina obra
+router.get("/", getObras);
+router.get("/:id", getObra);
+router.post("/", createObraCtrl);
+router.put("/:id", updateObraCtrl);
+router.delete("/:id", deleteObraCtrl);
 
 export default router;
